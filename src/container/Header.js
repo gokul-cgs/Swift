@@ -3,11 +3,6 @@ import HeaderImage from '../assets/img/Header.png'
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const navigate = useNavigate();
-    const logout = () => {
-        localStorage.removeItem('isAuthenticated');
-        navigate('/login')
-    };
 
     return (
         <div className='w-full relative bg-white'>

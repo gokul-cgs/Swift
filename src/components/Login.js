@@ -17,6 +17,7 @@ import config from '../utils/config';
 import { decrypt, decryptUnifiedString, encrypt, test } from '../utils/security';
 import axios from 'axios';
 import Header from '../container/Header';
+import { userData } from '../utils/common';
 
 const validationSchema = yup.object({
   username: yup.string().required('Username is required'),
@@ -27,6 +28,7 @@ const validationSchema = yup.object({
 
 
 const LoginForm = () => {
+  const userdata = userData()
   const { control, handleSubmit, reset, getValues, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
@@ -37,32 +39,13 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
 
+
   useEffect(() => {
-    console.log(config);
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    if (isAuthenticated) {
+    toast.success('wrqw')
+    if (!!userdata) {
       navigate('/dashboard')
     }
   }, [])
-
-  // useEffect(() => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         const { latitude, longitude } = position.coords;
-  //         console.log(latitude, longitude);
-
-  //       },
-  //       (error) => {
-  //         console.error('Error getting user location:', error);
-  //       }
-  //     );
-  //   }
-
-
-
-
-  // }, [])
 
 
   const onSubmit = (data) => {
@@ -82,74 +65,19 @@ const LoginForm = () => {
       .then(res => {
         console.log(res);
         
-        const dCrpted = (res?.data?.data);
+        const dCrpted = decrypt(res?.data?.data);
         console.log(dCrpted);
         
-        localStorage.setItem('isAuthenticated', 'true')
-        navigate('/dashboard')
-       
         if (dCrpted.success) {
-          localStorage.setItem('isAuthenticated', 'true')
-          navigate('/dashboard')
+          if (dCrpted?.data?.is_reset_password) {
+            toast.warn("Please Update your Password");
+          }else{
+            localStorage.setItem("swiftUserData", JSON.stringify(res?.data?.data))
+            navigate('/dashboard')
+          }
+        } else {
+          toast.error(dCrpted.message);
         }
-        // if (dCrpted.success) {
-        //   if (dCrpted.data.is_reset_password) {
-        //     toast.warn("Please Update your Password");
-        //     this.props.history.push({
-        //       pathname: '/change_password',
-        //       search: '?token=' + dCrpted.data.auth_token,
-        //       state: { detail: dCrpted.data }
-        //     })
-        //   } else {
-        //     if (this.state.rememberMe) {
-        //       const getMinute = new Date();
-        //       const setMinute = new Date();
-        //       let setAttribute = ''
-        //       setMinute.setMinutes(getMinute.getMinutes() + 30);
-        //       const cuname = this.state.username;
-        //       const cpassword = this.state.password;
-        //       const ecString1 = encryptUnifiedString(cuname);
-        //       const ecString2 = encryptUnifiedString(cpassword);
-        //       if (window.location.protocol === 'https:') {
-        //         setAttribute = ';Secure' + ';HttpOnly'
-        //       }
-        //       document.cookie = "Username=" + ecString1 + ';expires=' + setMinute + ';SameSite=Lax' + ';path=/' + setAttribute ;
-        //       document.cookie = "Password=" + ecString2 + ';expires=' + setMinute + ';SameSite=Lax' + ';path=/' + setAttribute;
-        //       // + ';Secure' + ';HttpOnly'
-        //     }
-        //     // if (true) {
-        //     if (dCrpted.data.is_branch_connect && ((dCrpted.data.c_status === '' || dCrpted.data.c_status === null) && (dCrpted.data.user_type === "DL" || dCrpted.data.user_type === "BM"))) {
-        //       this.props.history.push({
-        //         pathname: '/updatecontactdetail',
-        //         state: { detail: dCrpted.data, token: dCrpted.data.token, encrypted_data: res.data.data }
-        //       })
-        //     }
-        //     else {
-        //       (process.env.REACT_APP_BROWSING === 'true') ? sessionStorage.setItem("axisUserData", JSON.stringify(res.data.data)) : localStorage.setItem("axisUserData", JSON.stringify(res.data.data));
-        //       localStorage.setItem("popup", JSON.stringify(true))
-        //       this.props.setConfigUrls({
-        //         attachment_url : user_data?.attachment_url,
-        //         js_report_url : user_data?.js_report_url,
-        //         opt_url : user_data?.opt_url,
-        //         connect_plus_ipo_url : user_data?.connect_plus_ipo_url,
-        //         report_base_url : user_data?.connect_plus_base_url,
-        //     })
-        //       const copyPermission = this.context;
-        //       copyPermission.loadPermissions();
-        //       //const userdata = userData(); //<- Don't Delete this or Comment
-        //       if (dCrpted.data.is_admin || dCrpted.data.is_ops) {
-        //         this.props.history.push('/dashboard')
-        //       } else {
-        //         if (dCrpted.data.is_primary_manager && window.location.href.toLowerCase().includes('redirecturl=contactapproval'))
-        //           this.props.history.push('/contactapproval')
-        //         else
-        //           this.props.history.push('/search')
-        //       }
-        //     }
-        //   }
-        // } else {
-        //   toast.error(dCrpted.message);
-        // }
       })
       .catch(err => {
         console.log(err);

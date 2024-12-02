@@ -3,15 +3,16 @@ import Header from './Header'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { LinearProgress } from '@mui/material'
 import SideBarLayout from './SideBarLayout'
+import { userData } from '../utils/common'
 
 const Layout = (props) => {
     const navigate = useNavigate();
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    const userdata = userData()
 
     useEffect(() => {
 
-        if (!isAuthenticated) {
-            navigate('/login'); // Redirect to login if not authenticated
+        if (!userdata) {
+            navigate('/login');
         }
     }, [navigate]);
 
@@ -22,7 +23,7 @@ const Layout = (props) => {
                 { isAuthenticated ? <Outlet></Outlet> : <Navigate to="/login" /> }
             </main> */}
             <main style={{ height: '80vh' }} className='!relative'>
-                {isAuthenticated ? <SideBarLayout></SideBarLayout> : <Navigate to="/login" />}
+                {userdata ? <SideBarLayout></SideBarLayout> : <Navigate to="/login" />}
             </main>
         </>
     )

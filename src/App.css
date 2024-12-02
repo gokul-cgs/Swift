@@ -1,0 +1,4 @@
+.Toastify__toast--success {
+    background: #ebbe08 !important;
+    z-index: 999 !important;
+}

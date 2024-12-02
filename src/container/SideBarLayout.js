@@ -30,7 +30,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const drawerWidth = 240;
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -96,6 +96,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const menuItems = [
+  { text: 'Dashboard', route: '/dashboard' },
+  { text: 'Case Summary', route: '/case-summary' },
+  { text: 'Spam', route: '/spam' },
+];
+
+
 export default function MiniDrawer() {
   const theme = useTheme();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -126,16 +133,17 @@ export default function MiniDrawer() {
 
   const handleCloseUserMenu = (setting) => {
     if (setting === 'Logout') {
-
+      logout()
     }
     setAnchorElUser(null);
   };
 
-  const menuItems = [
-    { text: 'Dashboard', route: '/dashboard' },
-    { text: 'Case Summary', route: '/case-summary' },
-    { text: 'Spam', route: '/spam' },
-  ];
+
+  const logout = () => {
+    localStorage.removeItem('swiftUserData');
+    navigate('/login')
+  };
+
 
   return (
     <Box sx={{ display: 'flex' }}>
