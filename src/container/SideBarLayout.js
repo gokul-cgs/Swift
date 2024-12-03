@@ -28,6 +28,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { common } from '@mui/material/colors';
 
 const drawerWidth = 240;
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -126,7 +127,8 @@ export default function MiniDrawer() {
 
   const handleCloseUserMenu = (setting) => {
     if (setting === 'Logout') {
-
+      localStorage.removeItem('isAuthenticated');
+      navigate("/login");
     }
     setAnchorElUser(null);
   };
