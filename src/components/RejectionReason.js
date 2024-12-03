@@ -5,10 +5,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SelectInput from '../CustomFields/SelectInput';
 import * as yup from 'yup';
 import { Button } from '@mui/material';
+import TextInput from '../CustomFields/TextInput';
 
 const validationSchema = yup.object({
     request_type: yup.string().required('Request Type is required'),
     rejection_value: yup.string().required('Rejection Value is required'),
+    value: yup.string(),
+    internal_or_external: yup.string().required('Internal / External is required'),
+    status: yup.string().required('Status is required')
 });
 
 const RejectionReason = () => {
@@ -17,7 +21,10 @@ const RejectionReason = () => {
         resolver: yupResolver(validationSchema),
         defaultValues: {
             request_type: '',
-            rejection_value:''
+            rejection_value: '',
+            value: '',
+            internal_or_external: '',
+            status: ''
         }
     });
 
@@ -30,7 +37,7 @@ const RejectionReason = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className='w-full mt-3'>
-                <div className='grid grid-cols-6 w-full '>
+                <div className='grid grid-cols-2 gap-3'>
                     <SelectInput
                         isRequired
                         name="request_type"
@@ -56,10 +63,40 @@ const RejectionReason = () => {
                         helperText={errors.rejection_value ? errors.rejection_value.message : ''}
                     />
 
+                    <TextInput
+                        name="value"
+                        control={control}
+                        label="Value"
+                    />
+
+                    <SelectInput
+                        isRequired
+                        name="internal_or_external"
+                        control={control}
+                        label="Internal / External"
+                        options={[
+                            { label: 'India', value: 'IN' },
+                        ]}
+                        error={errors.internal_or_external}
+                        helperText={errors.internal_or_external ? errors.rejection_value.internal_or_external : ''}
+                    />
+
+                    <SelectInput
+                        isRequired
+                        name="status"
+                        control={control}
+                        label="Status"
+                        options={[
+                            { label: 'India', value: 'IN' },
+                        ]}
+                        error={errors.status}
+                        helperText={errors.status ? errors.rejection_value.status : ''}
+                    />
+
                 </div>
 
-                <div className='flex justify-center gap-4 mt-1'>
-                    <Button type="submit" variant="contained" className='!bg-themeColor !w-40'>Create</Button>
+                <div className='flex justify-center gap-4 mt-5'>
+                    <Button type="submit" variant="contained" className='!bg-themeColor !w-40'>Submit</Button>
                     <Button onClick={() => reset()} variant='outlined' className='!w-40 !border-gray-400 !text-gray-400'>Cancel</Button>
                 </div>
             </form>

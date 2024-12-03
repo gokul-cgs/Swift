@@ -28,7 +28,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import ProtectedRoutes from '../utils/ProtectedRoutes';
+import { ProtectedRoutes, sideBarMenu } from '../utils/Routes';
 
 const drawerWidth = 240;
 const settings = ['Logout'];
@@ -208,8 +208,12 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {ProtectedRoutes.map((item, index) => (
-            <ListItem
+          {ProtectedRoutes.map((item, index) => {
+
+            if (!sideBarMenu.includes(item.route)) {
+              return
+            }
+            return <ListItem
               key={item.route}
               onClick={() => navigate(item.route)}
               disablePadding
@@ -255,7 +259,7 @@ export default function MiniDrawer() {
               </ListItemButton>
 
             </ListItem>
-          ))}
+          })}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

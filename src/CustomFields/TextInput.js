@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const TextInput = ({ label, error, helperText, control, name, icon, type, ...props }) => {
+const TextInput = ({ label, error ='', helperText = '', control, name, icon, type,...props }) => {
   // State to toggle password visibility, only applies if type is 'password'
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,13 +19,14 @@ const TextInput = ({ label, error, helperText, control, name, icon, type, ...pro
       render={({ field }) => (
         <TextField
           {...field}
-          label={label}
+          label={label + (props?.isRequired ? '*' : '')}
           fullWidth
           variant="outlined"
           margin="normal"
           type={type === 'password' && showPassword ? 'text' : type}
           error={!!error}
           helperText={helperText}
+          className='!m-0'
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

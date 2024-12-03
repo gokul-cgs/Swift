@@ -2,7 +2,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Layout from './container/Layout';
 import NoPage from './container/NoPage';
-import ProtectedRoutes from './utils/ProtectedRoutes';
+import { ProtectedRoutes } from './utils/Routes';
 
 function App() {
   return (
