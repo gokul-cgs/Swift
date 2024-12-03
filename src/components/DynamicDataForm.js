@@ -75,7 +75,7 @@ const DynamicDataForm = () => {
         <SelectInput
           name="status"
           control={control}
-          label="Status"
+          label="Status*"
           options={[
             { label: 'Active', value: 'Active' },
             { label: 'Inactive', value: 'Inactive' },
@@ -136,7 +136,7 @@ const DynamicDataForm = () => {
         <SelectInput
           name="dataEntry"
           control={control}
-          label="Data Entry"
+          label="Data Entry*"
           options={[
             { label: 'Completed', value: 'Completed' },
             { label: 'Pending', value: 'Pending' },
