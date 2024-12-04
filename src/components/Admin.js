@@ -5,8 +5,11 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Menus = [
-    { title: 'Dynamic Data Form', route: '/dynamic-data-form', icon: <InsertDriveFileIcon /> },
-    { title: 'Rejection Reason', route: '/rejection_reason', icon: <InsertDriveFileIcon /> }
+    { title: 'Dynamic Data Form', route: '/dynamic_data_form', icon: <InsertDriveFileIcon /> },
+    { title: 'Rejection Reason', route: '/rejection_reason', icon: <InsertDriveFileIcon /> },
+    { title: 'Master Employees', route: '/employee_list', icon: <InsertDriveFileIcon /> },
+    { title: 'Master RM', route: '/rm_list', icon: <InsertDriveFileIcon /> },
+    { title: 'Master Branch', route: '/branch_list', icon: <InsertDriveFileIcon /> },
 ]
 
 const Admin = () => {
