@@ -158,7 +158,6 @@ const EmployeeForm = () => {
             label="Date of Joining"
             error={errors.dateOfJoining}
             helperText={errors.dateOfJoining?.message}
-            isRequired={true}
           />
 
           <TextInput
@@ -175,7 +174,6 @@ const EmployeeForm = () => {
             label="Date of Resignation"
             error={errors.dateOfResignation}
             helperText={errors.dateOfResignation?.message}
-            isRequired={true}
           />
           <CustomDatePicker
             name="lastWorkingDate"
@@ -183,7 +181,6 @@ const EmployeeForm = () => {
             label="Last Working Date"
             error={errors.lastWorkingDate}
             helperText={errors.lastWorkingDate?.message}
-            isRequired={true}
           />
           <TextInput
             name="status"

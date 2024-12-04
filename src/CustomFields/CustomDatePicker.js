@@ -18,36 +18,11 @@ const CustomDatePicker = ({ label, error = '', helperText = '', control, name, i
           <DatePicker
             {...field}
             value={selectedDate}
+            label={label + (isRequired ? '*' : '')}
             onChange={(date) => {
               setSelectedDate(date);
-              field.onChange(date); 
+              field.onChange(date);
             }}
-            render={(params) => (
-              <TextField
-                {...params}
-                label={label + (isRequired ? '*' : '')}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                error={!!error}
-                helperText={helperText || error?.message}
-                InputProps={{
-                  ...params.InputProps,
-                  readOnly: true,  // Makes the input field read-only
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton edge="end">
-                        {icon || <CalendarTodayIcon />} 
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                InputLabelProps={{
-                  shrink: selectedDate !== null || params?.inputProps?.value !== '', // Ensure label shrinks when there's a value
-                }}
-                {...props}
-              />
-            )}
           />
         </LocalizationProvider>
       )}
