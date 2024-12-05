@@ -6,6 +6,7 @@ import SelectInput from '../CustomFields/SelectInput';
 import * as yup from 'yup';
 import { Button } from '@mui/material';
 import TextInput from '../CustomFields/TextInput';
+import CustomHeader from '../CustomFields/CustomHeader';
 
 const validationSchema = yup.object({
     request_type: yup.string().required('Request Type is required'),
@@ -36,6 +37,8 @@ const RejectionReason = () => {
 
     return (
         <div>
+            <CustomHeader
+                text="Rejection Reason" />
             <form onSubmit={handleSubmit(onSubmit)} className='w-full mt-3'>
                 <div className='grid grid-cols-2 gap-3'>
                     <SelectInput

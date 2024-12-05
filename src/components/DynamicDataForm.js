@@ -6,6 +6,7 @@ import SelectInput from '../CustomFields/SelectInput';
 import { useForm } from 'react-hook-form';
 import 'tailwindcss/tailwind.css';
 import { Button } from '@mui/material';
+import CustomHeader from '../CustomFields/CustomHeader';
 
 const validationSchema = yup.object({
   lovName: yup.string().required('LOV Name is required'),
@@ -50,140 +51,143 @@ const DynamicDataForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-5">
-      <h3 className="text-lg font-bold mb-4">Dynamic Data Form</h3>
+    <div>
+      <CustomHeader
+        text="Dynamic Data Form" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <SelectInput
+            name="lovName"
+            control={control}
+            label="LOV Name*"
+            options={[
+              { label: 'Name1', value: 'na1' },
+              { label: 'Name2', value: 'na2' },
+            ]}
+            error={errors.lovName}
+            helperText={errors.lovName ? errors.lovName.message : ''}
+          />
+          <TextInput
+            name="lovValue"
+            control={control}
+            label="Value*"
+            error={errors.lovValue}
+            helperText={errors.lovValue ? errors.lovValue.message : ''}
+          />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <SelectInput
-          name="lovName"
-          control={control}
-          label="LOV Name*"
-          options={[
-            { label: 'Name1', value: 'na1' },
-            { label: 'Name2', value: 'na2' },
-          ]}
-          error={errors.lovName}
-          helperText={errors.lovName ? errors.lovName.message : ''}
-        />
-        <TextInput
-          name="lovValue"
-          control={control}
-          label="Value*"
-          error={errors.lovValue}
-          helperText={errors.lovValue ? errors.lovValue.message : ''}
-        />
+          <SelectInput
+            name="status"
+            control={control}
+            label="Status*"
+            options={[
+              { label: 'Active', value: 'Active' },
+              { label: 'Inactive', value: 'Inactive' },
+            ]}
+            error={errors.status}
+            helperText={errors.status ? errors.status.message : ''}
+          />
+          <SelectInput
+            name="isDynamic"
+            control={control}
+            label="Is Dynamic"
+            options={[
+              { label: 'Yes', value: 'Yes' },
+              { label: 'No', value: 'No' },
+            ]}
+          />
 
-        <SelectInput
-          name="status"
-          control={control}
-          label="Status*"
-          options={[
-            { label: 'Active', value: 'Active' },
-            { label: 'Inactive', value: 'Inactive' },
-          ]}
-          error={errors.status}
-          helperText={errors.status ? errors.status.message : ''}
-        />
-        <SelectInput
-          name="isDynamic"
-          control={control}
-          label="Is Dynamic"
-          options={[
-            { label: 'Yes', value: 'Yes' },
-            { label: 'No', value: 'No' },
-          ]}
-        />
+          <TextInput
+            name="daysRequired"
+            control={control}
+            label="Days Required*"
+            error={errors.daysRequired}
+            helperText={errors.daysRequired ? errors.daysRequired.message : ''}
+          />
+          <TextInput
+            name="priorityCode"
+            control={control}
+            label="Priority Code*"
+            error={errors.priorityCode}
+            helperText={errors.priorityCode ? errors.priorityCode.message : ''}
+          />
 
-        <TextInput
-          name="daysRequired"
-          control={control}
-          label="Days Required*"
-          error={errors.daysRequired}
-          helperText={errors.daysRequired ? errors.daysRequired.message : ''}
-        />
-        <TextInput
-          name="priorityCode"
-          control={control}
-          label="Priority Code*"
-          error={errors.priorityCode}
-          helperText={errors.priorityCode ? errors.priorityCode.message : ''}
-        />
+          <SelectInput
+            name="newExistCustomer"
+            control={control}
+            label="New/Exist Customer*"
+            options={[
+              { label: 'New', value: 'New' },
+              { label: 'Exist', value: 'Exist' },
+            ]}
+            error={errors.newExistCustomer}
+            helperText={errors.newExistCustomer ? errors.newExistCustomer.message : ''}
+          />
+          <SelectInput
+            name="scrutiny"
+            control={control}
+            label="Scrutiny*"
+            options={[
+              { label: 'Pending', value: 'Pending' },
+              { label: 'Completed', value: 'Completed' },
+            ]}
+            error={errors.scrutiny}
+            helperText={errors.scrutiny ? errors.scrutiny.message : ''}
+          />
 
-        <SelectInput
-          name="newExistCustomer"
-          control={control}
-          label="New/Exist Customer*"
-          options={[
-            { label: 'New', value: 'New' },
-            { label: 'Exist', value: 'Exist' },
-          ]}
-          error={errors.newExistCustomer}
-          helperText={errors.newExistCustomer ? errors.newExistCustomer.message : ''}
-        />
-        <SelectInput
-          name="scrutiny"
-          control={control}
-          label="Scrutiny*"
-          options={[
-            { label: 'Pending', value: 'Pending' },
-            { label: 'Completed', value: 'Completed' },
-          ]}
-          error={errors.scrutiny}
-          helperText={errors.scrutiny ? errors.scrutiny.message : ''}
-        />
+          <SelectInput
+            name="dataEntry"
+            control={control}
+            label="Data Entry*"
+            options={[
+              { label: 'Completed', value: 'Completed' },
+              { label: 'Pending', value: 'Pending' },
+            ]}
+            error={errors.dataEntry}
+            helperText={errors.dataEntry ? errors.dataEntry.message : ''}
+          />
+          <SelectInput
+            name="checker"
+            control={control}
+            label="Checker*"
+            options={[
+              { label: 'Yes', value: 'Yes' },
+              { label: 'No', value: 'No' },
+            ]}
+            error={errors.checker}
+            helperText={errors.checker ? errors.checker.message : ''}
+          />
 
-        <SelectInput
-          name="dataEntry"
-          control={control}
-          label="Data Entry*"
-          options={[
-            { label: 'Completed', value: 'Completed' },
-            { label: 'Pending', value: 'Pending' },
-          ]}
-          error={errors.dataEntry}
-          helperText={errors.dataEntry ? errors.dataEntry.message : ''}
-        />
-        <SelectInput
-          name="checker"
-          control={control}
-          label="Checker*"
-          options={[
-            { label: 'Yes', value: 'Yes' },
-            { label: 'No', value: 'No' },
-          ]}
-          error={errors.checker}
-          helperText={errors.checker ? errors.checker.message : ''}
-        />
+          <SelectInput
+            name="mailToCustomer"
+            control={control}
+            label="Mail to Customer*"
+            options={[
+              { label: 'Yes', value: 'Yes' },
+              { label: 'No', value: 'No' },
+            ]}
+            error={errors.mailToCustomer}
+            helperText={errors.mailToCustomer ? errors.mailToCustomer.message : ''}
+          />
+          <SelectInput
+            name="smsToCustomer"
+            control={control}
+            label="SMS to Customer*"
+            options={[
+              { label: 'Yes', value: 'Yes' },
+              { label: 'No', value: 'No' },
+            ]}
+            error={errors.smsToCustomer}
+            helperText={errors.smsToCustomer ? errors.smsToCustomer.message : ''}
+          />
+        </div>
 
-        <SelectInput
-          name="mailToCustomer"
-          control={control}
-          label="Mail to Customer*"
-          options={[
-            { label: 'Yes', value: 'Yes' },
-            { label: 'No', value: 'No' },
-          ]}
-          error={errors.mailToCustomer}
-          helperText={errors.mailToCustomer ? errors.mailToCustomer.message : ''}
-        />
-        <SelectInput
-          name="smsToCustomer"
-          control={control}
-          label="SMS to Customer*"
-          options={[
-            { label: 'Yes', value: 'Yes' },
-            { label: 'No', value: 'No' },
-          ]}
-          error={errors.smsToCustomer}
-          helperText={errors.smsToCustomer ? errors.smsToCustomer.message : ''}
-        />
-      </div>
+        <div className='flex justify-center gap-4 mt-5'>
+          <Button type="submit" variant="contained" className='!bg-themeColor !w-40'>Submit</Button>
+          <Button onClick={() => reset()} variant='outlined' className='!w-40 !border-gray-400 !text-gray-400'>Cancel</Button>
+        </div>
+      </form>
+    </div>
 
-      <div className='flex justify-center gap-4 mt-5'>
-        <Button type="submit" variant="contained" className='!bg-themeColor !w-40'>Submit</Button>
-        <Button onClick={() => reset()} variant='outlined' className='!w-40 !border-gray-400 !text-gray-400'>Cancel</Button>
-      </div>
-    </form>
   );
 };
 
