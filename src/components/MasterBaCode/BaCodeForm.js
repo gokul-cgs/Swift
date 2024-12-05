@@ -7,6 +7,7 @@ import CustomHeader from '../../CustomFields/CustomHeader';
 import { useForm } from 'react-hook-form';
 import 'tailwindcss/tailwind.css';
 import { Button } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 const validationSchema = yup.object({
   baCode: yup.string().required('Bacode is required'),
@@ -16,6 +17,9 @@ const validationSchema = yup.object({
 });
 
 const BaCodeForm = () => {
+  const location = useLocation();
+  const pData = location.state || {};
+
   const {
     control,
     handleSubmit,
@@ -24,10 +28,10 @@ const BaCodeForm = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      baCode: '',
-      mailId: '',
-      empCode: '',
-      status: '',
+      baCode: pData.bacode,
+      mailId: pData.mailId,
+      empCode: pData.empCode,
+      status: pData.is_active,
     },
   });
 
