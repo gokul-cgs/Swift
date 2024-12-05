@@ -10,6 +10,7 @@ const Menus = [
     { title: 'Master Employees', route: '/employee_list', icon: <InsertDriveFileIcon /> },
     { title: 'Master RM', route: '/rm_list', icon: <InsertDriveFileIcon /> },
     { title: 'Master Branch', route: '/branch_list', icon: <InsertDriveFileIcon /> },
+    { title: 'Master Bacode', route: '/bacode_list', icon: <InsertDriveFileIcon /> },
 ]
 
 const Admin = () => {

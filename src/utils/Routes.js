@@ -11,6 +11,9 @@ import RMFileUploadForm from "../components/MasterRM/RMFileUploadForm";
 import BranchForm from "../components/MasterBranch/BranchForm";
 import BranchList from "../components/MasterBranch/BranchList";
 import BranchFileUploadForm from "../components/MasterBranch/BranchFileUploadForm";
+import BaCodeList from "../components/MasterBaCode/BaCodeList";
+import BaCodeForm from "../components/MasterBaCode/BaCodeForm";
+import BaCodeFileUploadForm from "../components/MasterBaCode/BaCodeFileUploadForm";
 import Admin from "../components/Admin";
 
 const ProtectedRoutes = [
@@ -28,12 +31,15 @@ const ProtectedRoutes = [
   { route: "rm_file_upload_form", name: "RM File Upload Form", component: RMFileUploadForm },
   { route: "branch_file_upload_form", name: "Branch File Upload Form", component: BranchFileUploadForm },
   { route: "employee_file_upload_form", name: "Employee File Upload Form", component: EmployeeFileUploadForm },
+  { route: "bacode_list", name: "Bacode List", component: BaCodeList },
+  { route: "bacode_file_upload_form", name: "Bacode File Upload Form", component: BaCodeFileUploadForm },
+  { route: "bacode_form", name: "Bacode Form", component: BaCodeForm },
 ];
 
 const sideBarMenu = [
-    'dashboard',
-    'case_summary',
-    'admin'
+  'dashboard',
+  'case_summary',
+  'admin'
 ]
 
-export {ProtectedRoutes, sideBarMenu};
+export { ProtectedRoutes, sideBarMenu };
