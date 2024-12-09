@@ -23,7 +23,7 @@ const validationSchema = yup.object({
     .string()
     .matches(/^\d{10}$/, 'Mobile number must be 10 digits')
     .required('Mobile number is required'),
-  dateOfJoining: yup.string(),
+  dateOfJoining: yup.string().required('Date of joining is required'),
   employmentStatus: yup.string().required('Employment Status is required'),
   dateOfResignation: yup.string(),
   lastWorkingDate: yup.string(),
@@ -158,6 +158,7 @@ const EmployeeForm = () => {
             label="Date of Joining"
             error={errors.dateOfJoining}
             helperText={errors.dateOfJoining?.message}
+            isRequired={true}
           />
 
           <TextInput
