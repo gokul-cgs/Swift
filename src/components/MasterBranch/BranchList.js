@@ -115,8 +115,8 @@ const BranchList = () => {
       <CustomTable
         columns={columns}
         data={state.listItems}
-        handleNavigate={handleNavigate}
-        handleDeleteClick={handleDeleteClick}
+        // handleNavigate={handleNavigate}
+        // handleDeleteClick={handleDeleteClick}
         pagination={{
           totalPages: state.totalPages,
           activePage: state.activePage,

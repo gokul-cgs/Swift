@@ -11,6 +11,8 @@ const Menus = [
     { title: 'Master RM', route: '/rm_list', icon: <InsertDriveFileIcon /> },
     { title: 'Master Branch', route: '/branch_list', icon: <InsertDriveFileIcon /> },
     { title: 'Master Bacode', route: '/bacode_list', icon: <InsertDriveFileIcon /> },
+    { title: 'Master Email', route: '/email_list', icon: <InsertDriveFileIcon /> },
+    { title: 'Master SMS', route: '/sms_list', icon: <InsertDriveFileIcon /> },
 ]
 
 const Admin = () => {

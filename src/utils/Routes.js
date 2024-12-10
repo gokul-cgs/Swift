@@ -13,7 +13,8 @@ import BranchList from "../components/MasterBranch/BranchList";
 import BranchFileUploadForm from "../components/MasterBranch/BranchFileUploadForm";
 import BaCodeList from "../components/MasterBaCode/BaCodeList";
 import BaCodeForm from "../components/MasterBaCode/BaCodeForm";
-import BaCodeFileUploadForm from "../components/MasterBaCode/BaCodeFileUploadForm";
+import BaCodeFileUploadForm from "../components/MasterBaCode/BaCodeFileUploadForm"; 
+import EmailList from "../components/MasterEmail/EmailList"; 
 import Admin from "../components/Admin";
 
 const ProtectedRoutes = [
@@ -34,6 +35,7 @@ const ProtectedRoutes = [
   { route: "bacode_list", name: "Bacode List", component: BaCodeList },
   { route: "bacode_file_upload_form", name: "Bacode File Upload Form", component: BaCodeFileUploadForm },
   { route: "bacode_form", name: "Bacode Form", component: BaCodeForm },
+  { route: "email_list", name: "Email List", component: EmailList },
 ];
 
 const sideBarMenu = [
